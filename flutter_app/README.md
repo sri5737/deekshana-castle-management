@@ -1,16 +1,50 @@
-# deekshanacastle
 
-A new Flutter project.
+# Deekshana Castle Management Flutter App
 
-## Getting Started
+## Registration Module
 
-This project is a starting point for a Flutter application.
+This app supports both Android and Web platforms from a single codebase.
 
-A few resources to get you started if this is your first Flutter project:
+### Features
+- Admin login screen (mock credentials: admin/admin123)
+- Hosteler registration form with all required fields, file/image uploads
+- List, edit, and delete hostelers
+- Responsive UI for mobile and desktop
+- Local storage using Hive
+- State management using Provider
 
+### How to Run
+
+#### 1. Install dependencies
+```
+flutter pub get
+```
+
+#### 2. Run on Android
+```
+flutter run -d android
+```
+
+#### 3. Run on Web
+```
+flutter run -d chrome
+```
+
+#### 4. Required Packages
+The following packages are used:
+- provider
+- hive
+- hive_flutter
+- image_picker
+- file_picker
+
+#### 5. Notes
+- No backend integration yet; all data is stored locally.
+- For file/image picking, permissions may be required on Android.
+- To clear local data, uninstall the app or clear browser storage.
+
+---
+For more Flutter resources:
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [Flutter documentation](https://docs.flutter.dev/)
