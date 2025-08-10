@@ -11,6 +11,19 @@
 				"$eslint - stylish"
 			],
 			"group": "build"
+		},
+		{
+			"label": "Flutter clean + analyze",
+			"type": "shell",
+			"command": "powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -Command \"cd d:\\website\\deekshana-castle-management\\flutter_app; flutter clean; dart pub get; flutter analyze\"",
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Flutter clean + analyze",
+			"type": "shell",
+			"command": "powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -Command \"cd d:\\website\\deekshana-castle-management\\flutter_app; flutter clean; dart pub get; flutter analyze\"",
+			"group": "build"
 		}
 	]
 }

@@ -6,6 +6,7 @@ import '../providers/hosteler_provider.dart';
 import '../providers/auth_provider.dart';
 import '../widgets/app_header.dart';
 import '../screens/hosteler_form_screen.dart';
+import '../screens/finance_tab.dart';
 import '../models.dart';
 
 
@@ -73,9 +74,8 @@ class HostelerListScreen extends StatelessWidget {
 									),
 								),
 							),
-							Center(
-								child: Text('Finance coming soon', style: Theme.of(context).textTheme.titleMedium),
-							),
+																					// Finance tab: pull month-wise sheets starting MAY 2025 (link configured in config.dart)
+																					const FinanceTab(),
 						],
 					),
 					floatingActionButton: Builder(

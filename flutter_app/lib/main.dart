@@ -6,6 +6,7 @@ import 'registration/screens/admin_login_screen.dart';
 import 'registration/screens/hosteler_list_screen.dart';
 import 'registration/providers/hosteler_provider.dart';
 import 'registration/providers/auth_provider.dart';
+import 'registration/providers/finance_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,10 +19,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+  return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => HostelerProvider()..loadHostelers()),
         ChangeNotifierProvider(create: (_) => AuthProvider()),
+    ChangeNotifierProvider(create: (_) => FinanceProvider()),
       ],
       child: MaterialApp(
         title: 'Deekshana Castle Management',
