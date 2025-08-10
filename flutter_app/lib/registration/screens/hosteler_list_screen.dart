@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:typed_data';
 import 'package:provider/provider.dart';
 import '../providers/hosteler_provider.dart';
+import '../providers/auth_provider.dart';
 import '../widgets/app_header.dart';
 import '../screens/hosteler_form_screen.dart';
 import '../models.dart';
@@ -22,6 +23,8 @@ class HostelerListScreen extends StatelessWidget {
 						title: 'Hostelers',
 						username: username,
 						onLogout: () {
+							final auth = Provider.of<AuthProvider>(context, listen: false);
+							auth.logout();
 							Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
 						},
 						tabs: const [

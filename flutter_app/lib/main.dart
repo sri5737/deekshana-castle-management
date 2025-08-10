@@ -5,6 +5,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'registration/screens/admin_login_screen.dart';
 import 'registration/screens/hosteler_list_screen.dart';
 import 'registration/providers/hosteler_provider.dart';
+import 'registration/providers/auth_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,8 +18,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => HostelerProvider()..loadHostelers(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => HostelerProvider()..loadHostelers()),
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+      ],
       child: MaterialApp(
         title: 'Deekshana Castle Management',
         theme: ThemeData(
@@ -80,14 +84,48 @@ class MyApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
-        routes: {
-          '/': (context) => AdminLoginScreen(onLogin: (username) {
-            Navigator.pushNamed(context, '/hostelerList', arguments: username);
-          }),
-          '/hostelerList': (context) {
-            final username = ModalRoute.of(context)?.settings.arguments as String? ?? '';
-            return HostelerListScreen(username: username);
-          },
+        onGenerateRoute: (settings) {
+          switch (settings.name) {
+            case '/':
+              return MaterialPageRoute(
+                builder: (ctx) => Consumer<AuthProvider>(
+                  builder: (ctx, auth, _) => AdminLoginScreen(
+                    onLogin: (username) {
+                      auth.login(username);
+                      Navigator.pushReplacementNamed(ctx, '/hostelerList');
+                    },
+                  ),
+                ),
+              );
+            case '/hostelerList':
+              return MaterialPageRoute(
+                builder: (ctx) => Consumer<AuthProvider>(
+                  builder: (ctx, auth, _) {
+                    if (!auth.isLoggedIn) {
+                      return AdminLoginScreen(
+                        onLogin: (username) {
+                          auth.login(username);
+                          Navigator.pushReplacementNamed(ctx, '/hostelerList');
+                        },
+                      );
+                    }
+                    final username = auth.username ?? '';
+                    return HostelerListScreen(username: username);
+                  },
+                ),
+              );
+            default:
+              return MaterialPageRoute(
+                builder: (ctx) => Consumer<AuthProvider>(
+                  builder: (ctx, auth, _) => AdminLoginScreen(
+                    onLogin: (username) {
+                      auth.login(username);
+                      Navigator.pushReplacementNamed(ctx, '/hostelerList');
+                    },
+                  ),
+                ),
+              );
+          }
         },
       ),
     );
