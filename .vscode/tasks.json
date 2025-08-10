@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Flutter clean + analyze",
+			"type": "shell",
+			"command": "powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -Command \"cd d:\\website\\deekshana-castle-management\\flutter_app; flutter clean; dart pub get; flutter analyze\"",
+			"isBackground": false,
+			"problemMatcher": [
+				"$dartc",
+				"$eslint - stylish"
+			],
+			"group": "build"
+		}
+	]
+}
