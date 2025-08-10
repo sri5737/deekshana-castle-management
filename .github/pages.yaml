@@ -1,0 +1,3 @@
+build:
+  # Use GitHub Actions for Pages builds
+  use_actions: true
