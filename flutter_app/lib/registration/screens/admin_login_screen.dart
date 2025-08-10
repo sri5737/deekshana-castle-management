@@ -17,6 +17,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
   void _login() {
     final username = _usernameController.text.trim();
     final password = _passwordController.text;
+  if (_error != null) setState(() => _error = null);
     if (username.isEmpty || password.isEmpty) {
       setState(() => _error = 'Please enter both username and password');
       return;
